@@ -1,3 +1,7 @@
+Fixes for running it with Python3
+[imposm-parser for python3](https://github.com/lechup/imposm-parser/)
+
+
 osmgraph
 ========
 
