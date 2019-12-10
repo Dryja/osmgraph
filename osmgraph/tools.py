@@ -68,7 +68,7 @@ def coordinates(g, nodes):
     List of (lon, lat) coordinate pairs
 
     """
-    c = [g.node[n]["coordinate"] for n in nodes]
+    c = [g.nodes[n]["coordinate"] for n in nodes]
     return c
 
 
