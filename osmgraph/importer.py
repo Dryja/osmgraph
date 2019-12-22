@@ -38,26 +38,26 @@ class GraphImporter(object):
 
         for way_id, (tags, nodes) in self.ways.items():
             # If oneway is '-1', reverse the way and treat as a normal oneway
-            if tags.get('oneway') == '-1':
+            if tags.get("oneway") == "-1":
                 nodes = reversed(nodes)
-                tags['oneway'] = 'yes'
-            oneway = tags.get('oneway') == 'yes'
+                tags["oneway"] = "yes"
+            oneway = tags.get("oneway") == "yes"
 
             for n0, n1 in tools.pairwise(nodes):
                 g.add_edge(n0, n1, attr_dict=tags)
                 if parse_direction:
-                    g[n0][n1]['_direction'] = 'forward'
+                    g[n0][n1]["_direction"] = "forward"
                 if not oneway:
                     g.add_edge(n1, n0, attr_dict=tags)
                     if parse_direction:
-                        g[n1][n0]['_direction'] = 'backward'
+                        g[n1][n0]["_direction"] = "backward"
 
-                g.node[n0].update(self._node_properties(n0))
-            g.node[n1].update(self._node_properties(n1))
+                g.nodes[n0].update(self._node_properties(n0))
+            g.nodes[n1].update(self._node_properties(n1))
 
         return g
 
     def _node_properties(self, node_id):
         properties = self.nodes.get(node_id, {})
-        properties['coordinate'] = self.coords[node_id]
+        properties["coordinate"] = self.coords[node_id]
         return properties

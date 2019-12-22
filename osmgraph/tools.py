@@ -26,7 +26,7 @@ def nwise(iterable, n):
     """
     iters = itertools.tee(iterable, n)
     iters = (itertools.islice(it, i, None) for i, it in enumerate(iters))
-    return itertools.izip(*iters)
+    return zip(*iters)
 
 
 def pairwise(iterable):
@@ -68,7 +68,7 @@ def coordinates(g, nodes):
     List of (lon, lat) coordinate pairs
 
     """
-    c = [g.node[n]['coordinate'] for n in nodes]
+    c = [g.nodes[n]["coordinate"] for n in nodes]
     return c
 
 
@@ -237,7 +237,7 @@ def turn_angle(g, n1, n2, n3):
 
 def turn_angle_coords(coords):
     if len(coords) != 3:
-        raise ValueError('coords must have length 3')
+        raise ValueError("coords must have length 3")
 
     angles = geog.course(coords[:-1], coords[1:])
 
